@@ -32,12 +32,10 @@ var sales_report_link = '';
              htmlText = htmlText + '<tr><th class="rotate" scope="row">Gallery Image (รูปภาพ Gallery)</th><td><a href="'+data[i][13]+'" target="_blank"> Add Gallery Image</a></td></tr>';
              htmlText = htmlText + '</tbody></table></div></div></div>';
              $("#accordion").append(htmlText);
+             CKEDITOR.replace('Description-'+data[i][0]+''); 
              if(data[i][8])$("#isShippingRequired-"+data[i][0]).val("TRUE");
              if(data[i][9])$("#enabled-"+data[i][0]).val("TRUE");
              }
-             
-             bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
-             
         }).getProduct_fromKBazaar();
       });
 // <input class="form-control" type="text" name="Description-'+data[i][0]+'" id="Description-'+data[i][0]+'" placeholder="Description" required="required" value="'+data[i][7]+'" onchange="KBazaar_OnEdit(\'Description-'+data[i][0]+'\',\'Description\','+data[i][0]+')"/>     

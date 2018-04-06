@@ -7,7 +7,7 @@ var sales_report_link = '';
           console.log(data.length);
           console.log(data);
           for(var i=0;i<data.length;++i){ // iterate row by row and examine data in column A
-             var htmlText = '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse'+(i+1)+'">'+(i+1)+') '+ data[i][1] + ' &emsp; <img src="'+data[i][10]+'" style="max-width:230px;max-height:95px;width: auto;height: auto;"/></a></h4></div>';
+              var htmlText = '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse'+(i+1)+'">'+(i+1)+') '+ data[i][1] + ' &emsp; <img src="'+data[i][10]+'" style="max-width:230px;max-height:95px;width: auto;height: auto;"/></a></h4></div>';
              htmlText = htmlText + '<div id="collapse'+(i+1)+'" class="panel-collapse collapse in"><div class="panel-body"><table class="table" style="border-radius: 25px;border: 2px solid #73AD21;padding: 20px;"><thead><tr><th class="rotate" scope="col">Property</th><th class="rotate" scope="col">Value</th></tr></thead>';
              htmlText = htmlText + '<tr><th class="rotate" scope="row">Web Category (หมวดหมู่)</th><td>'+data[i][11]+'</td></tr>';
              htmlText = htmlText + '<tbody><tr><th class="rotate" scope="row">ID (รหัสสินค้า)</th><td><a href="'+data[i][14]+'"  target="_blank">'+data[i][0]+'</a></td></tr>';

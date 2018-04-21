@@ -34,13 +34,13 @@ google.script.run.withSuccessHandler(function(e){
      htmlText = htmlText + '<tr><th class="rotate" scope="row">Gallery Image (รูปภาพ Gallery)</th><td><a href="'+data[i][13]+'" target="_blank"> Add Gallery Image</a></td></tr>';
      htmlText = htmlText + '</tbody></table>';
      htmlText = htmlText + '</tbody></table>';
-     htmlText = htmlText + '</div></div></div>';
      for(var j=1;j<attribute_ids.length;++j){
       if(j%3==0)htmlText = htmlText + '<div class="form-row">';
       var paramID = (data[i][14]+'-'+attribute_ids[j-1]);      
       htmlText = htmlText + '<div class="form-group col-md-4"> <label for="'+attribute_names[j-1]+'">'+attribute_names[j-1]+'</label><input type="text" class="form-control" id="'+paramID+'" placeholder="'+attribute_names[j-1]+'" value="'+data[i][15][data[i][16].indexOf(attribute_ids[j-1])]+'" onchange="KBazaar_OnEdit(\''+paramID+'\',\'attribute\','+data[i][0]+');"></div>'; 
       if(j%3==0)htmlText = htmlText + '</div>';
      }
+     htmlText = htmlText + '</div></div></div>';
      $("#accordion").append(htmlText);
      CKEDITOR.replace('Description-'+data[i][0]+''); 
      if(data[i][8])$("#isShippingRequired-"+data[i][0]).val("TRUE");

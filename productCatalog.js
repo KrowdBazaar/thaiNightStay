@@ -10,7 +10,7 @@ google.script.run.withSuccessHandler(function(e){
   console.log(data);
   for(var i=0;i<data.length;++i){ // iterate row by row and examine data in column A
      var htmlText = '<div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse'+(i+1)+'">'+(i+1)+') '+ data[i][1] + ' &emsp; <img src="'+data[i][10]+'" style="max-width:230px;max-height:95px;width: auto;height: auto;"/></a></h4></div>';
-     htmlText = htmlText + '<div id="collapse'+(i+1)+'" class="panel-collapse collapse in"><div class="panel-body"><table class="table" style="border-radius: 25px;border: 2px solid #73AD21;padding: 20px;"><thead><tr><th class="rotate" scope="col">Property</th><th class="rotate" scope="col">Value</th></tr></thead>';
+     htmlText = htmlText + '<div id="collapse'+(i+1)+'" class="panel-collapse collapse in"><div class="panel-body"><table class="table" style="border-radius: 25px;border: 2px solid #73AD21;padding: 20px;">';
      htmlText = htmlText + '<tr><th class="rotate" scope="row">Web Category (หมวดหมู่)</th><td>'+data[i][11]+'</td></tr>';
      htmlText = htmlText + '<tbody><tr><th class="rotate" scope="row">ID (รหัสสินค้า)</th><td><a href="'+data[i][14]+'"  target="_blank">'+data[i][0]+'</a></td></tr>';
      htmlText = htmlText + '<tr><th class="rotate" scope="row">Name (ชื่อสินค้า)</th><td><input class="form-control" type="text" name="name-'+data[i][0]+'" id="name-'+data[i][0]+'" placeholder="Name" required="required" value="'+data[i][1]+'" onchange="KBazaar_OnEdit(\'name-'+data[i][0]+'\',\'name\','+data[i][0]+');"/></td></tr>';
@@ -31,7 +31,16 @@ google.script.run.withSuccessHandler(function(e){
      selectOption = selectOption + '</select>';
      htmlText = htmlText + '<tr><th class="rotate" scope="row">Enabled (ให้แสดงที่หน้าร้านค้า? TRUE = ต้องการ,FALSE = ไม่ต้องการ)</th><td>'+selectOption+'</td></tr>';
      htmlText = htmlText + '<tr><th class="rotate" scope="row">Main Image (รูปภาพหลักของสินค้า)</th><td><a href="'+data[i][12]+'" target="_blank"> Change Main Image</a></td></tr>';
-     htmlText = htmlText + '<tr><th class="rotate" scope="row">Gallery Image (รูปภาพ Gallery)</th><td><a href="'+data[i][13]+'" target="_blank"> Add Gallery Image</a></td></tr>';
+     htmlText = htmlText + '<tr><th class="rotate" scope="row">Gallery Image (รูปภาพ Gallery)</th><td><a href="'+data[i][13]+'" target="_blank"> Add Gallery Image</a>';
+     for(var j=1;j<data[i][17].length;++j){
+      if(j%3==0)htmlText = htmlText + '<div class="form-row">';
+      htmlText = htmlText + '<div class="form-group col-md-4"><div class="show-image">';
+      htmlText = htmlText + '<img src="'+data[i][17][j-1]+'" width="128" height="128"/>';
+      htmlText = htmlText + '<button class="delete" type="button" onclick="alert(\'Option not available right now, contact admin\');">Delete</delete></button>';
+      htmlText = htmlText + '</div></div>';
+      if(j%3==0)htmlText = htmlText + '</div>';
+     }
+     htmlText = htmlText + '</td></tr>';
      for(var j=1;j<attribute_ids.length;++j){
       if(j%3==0)htmlText = htmlText + '<div class="form-row">';
       var paramID = (data[i][0]+'-'+attribute_ids[j-1]);      

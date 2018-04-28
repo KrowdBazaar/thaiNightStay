@@ -31,12 +31,13 @@ google.script.run.withSuccessHandler(function(e){
      selectOption = selectOption + '</select>';
      htmlText = htmlText + '<tr><th class="rotate" scope="row">Enabled (ให้แสดงที่หน้าร้านค้า? TRUE = ต้องการ,FALSE = ไม่ต้องการ)</th><td>'+selectOption+'</td></tr>';
      htmlText = htmlText + '<tr><th class="rotate" scope="row">Main Image (รูปภาพหลักของสินค้า)</th><td><a href="'+data[i][12]+'" target="_blank"> Change Main Image</a></td></tr>';
-     htmlText = htmlText + '<tr><th class="rotate" scope="row">Gallery Image (รูปภาพ Gallery)</th><td><a href="'+data[i][13]+'" target="_blank"> Add Gallery Image</a>';
+     htmlText = htmlText + '<tr><th class="rotate" scope="row">Gallery Image (รูปภาพ Gallery)</th><td><div><a href="'+data[i][13]+'" target="_blank"> Add Gallery Image</a></div>';
      for(var j=1;j<data[i][17].length;++j){
       if(j%3==0)htmlText = htmlText + '<div class="form-row">';
-      htmlText = htmlText + '<div class="form-group col-md-4"><div class="show-image">';
-      htmlText = htmlText + '<img src="'+data[i][17][j-1]+'" width="128" height="128"/>';
-      htmlText = htmlText + '<button class="delete" type="button" onclick="alert(\'Option not available right now, contact admin\');">Delete</delete></button>';
+      var paramID = (data[i][0]+'-'+data[i][17][j-1]);      
+      htmlText = htmlText + '<div class="form-group col-md-4"><div class="show-image" id="'+paramID+'">';
+      htmlText = htmlText + '<img src="'+data[i][18][j-1]+'" width="128" height="128"/>';
+      htmlText = htmlText + '<button class="delete" type="button" onclick="KBazaar_GalleryDelete(\''+data[i][18][j-1]+'\',\'gallery_delete\',\''+paramID+'\');">Delete</delete></button>';
       htmlText = htmlText + '</div></div>';
       if(j%3==0)htmlText = htmlText + '</div>';
      }
@@ -75,3 +76,10 @@ var KBazaar_DescriptionEdit = function(paramID,param,productId){
    alert(param+" property of product id: " + productId + " has been changed to "+ newValue);
 }).productCatalog_OnEdit(param,productId,newValue);
 };
+
+var KBazaar_GalleryDelete = function(imageUrl,param,productId){
+ google.script.run.withSuccessHandler(function(e){
+   alert("Gallery Image( " + productId + " ) got deleted successfully");
+}).productCatalog_OnEdit(param,productId,imageUrl);
+};
+

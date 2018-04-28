@@ -32,7 +32,7 @@ google.script.run.withSuccessHandler(function(e){
      htmlText = htmlText + '<tr><th class="rotate" scope="row">Enabled (ให้แสดงที่หน้าร้านค้า? TRUE = ต้องการ,FALSE = ไม่ต้องการ)</th><td>'+selectOption+'</td></tr>';
      htmlText = htmlText + '<tr><th class="rotate" scope="row">Main Image (รูปภาพหลักของสินค้า)</th><td><a href="'+data[i][12]+'" target="_blank"> Change Main Image</a></td></tr>';
      htmlText = htmlText + '<tr><th class="rotate" scope="row">Gallery Image (รูปภาพ Gallery)</th><td><div><a href="'+data[i][13]+'" target="_blank"> Add Gallery Image</a></div>';
-     for(var j=1;j<data[i][17].length;++j){
+     for(var j=1;j<=data[i][17].length;++j){
       if(j%3==0)htmlText = htmlText + '<div class="form-row">';
       var paramID = (data[i][0]+'-'+data[i][17][j-1]);      
       htmlText = htmlText + '<div class="form-group col-md-4"><div class="show-image" id="'+paramID+'">';
@@ -42,7 +42,7 @@ google.script.run.withSuccessHandler(function(e){
       if(j%3==0)htmlText = htmlText + '</div>';
      }
      htmlText = htmlText + '</td></tr>';
-     for(var j=1;j<attribute_ids.length;++j){
+     for(var j=1;j<=attribute_ids.length;++j){
       if(j%3==0)htmlText = htmlText + '<div class="form-row">';
       var paramID = (data[i][0]+'-'+attribute_ids[j-1]);      
       htmlText = htmlText + '<div class="form-group col-md-4"><label for="'+attribute_names[j-1]+'">'+attribute_names[j-1]+'</label><input type="text" class="form-control" id="'+paramID+'" placeholder="'+attribute_names[j-1]+'" value="'+data[i][15][data[i][16].indexOf(attribute_ids[j-1])]+'" onchange="KBazaar_OnEdit(\''+paramID+'\',\'attribute\',\''+paramID+'\');"></div>'; 

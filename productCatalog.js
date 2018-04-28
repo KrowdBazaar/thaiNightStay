@@ -80,6 +80,7 @@ var KBazaar_DescriptionEdit = function(paramID,param,productId){
 var KBazaar_GalleryDelete = function(imageUrl,param,productId){
  google.script.run.withSuccessHandler(function(e){
    alert("Gallery Image( " + productId + " ) got deleted successfully");
+   $("#"+productId).remove();
 }).productCatalog_OnEdit(param,productId,imageUrl);
 };
 

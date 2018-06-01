@@ -19,7 +19,7 @@ google.script.run.withSuccessHandler(function(e){
      htmlText = htmlText + '<tr><th class="rotate" scope="row">Compare To Price (ราคาเปรียบเทียบ)</th><td><input class="form-control" type="number" min="1" name="compareToPrice-'+data[i][0]+'" id="compareToPrice-'+data[i][0]+'" placeholder="Compare To Price" required="required" value="'+data[i][4]+'" onchange="KBazaar_OnEdit(\'compareToPrice-'+data[i][0]+'\',\'compareToPrice\','+data[i][0]+')"/></td></tr>';
      htmlText = htmlText + '<tr><th class="rotate" scope="row">SEO Title (หัวข้อ SEO)</th><td><input class="form-control" type="text" name="seoTitle-'+data[i][0]+'" id="seoTitle-'+data[i][0]+'" placeholder="SEO Title" required="required" value="'+data[i][5]+'" onchange="KBazaar_OnEdit(\'seoTitle-'+data[i][0]+'\',\'seoTitle\','+data[i][0]+')"/></td></tr>';
      htmlText = htmlText + '<tr><th class="rotate" scope="row">SEO Description (คำอธิบาย Metatag SEO)</th><td><input class="form-control" type="text" name="seoDescription-'+data[i][0]+'" id="seoDescription-'+data[i][0]+'" placeholder="SEO Description" required="required" value="'+data[i][6]+'" onchange="KBazaar_OnEdit(\'seoDescription-'+data[i][0]+'\',\'seoDescription\','+data[i][0]+')"/></td></tr>';
-     htmlText = htmlText + '<tr><th class="rotate" scope="row">Description (คำอธิบายสินค้า)</th><td><textarea name="Description-'+data[i][0]+'" style="width: 100%;" id="Description-'+data[i][0]+'" value="'+data[i][7]+'"></textarea><button class="button" onclick="KBazaar_DescriptionEdit(\'Description-'+data[i][0]+'\',\'Description\','+data[i][0]+')">Save Description</button></td></tr>';
+     htmlText = htmlText + '<tr><th class="rotate" scope="row">Description (คำอธิบายสินค้า)</th><td><textarea name="Description-'+data[i][0]+'" style="width: 100%;" id="Description-'+data[i][0]+'"></textarea><button class="button" onclick="KBazaar_DescriptionEdit(\'Description-'+data[i][0]+'\',\'Description\','+data[i][0]+')">Save Description</button></td></tr>';
      var selectOption = '<select class="form-control form-control-select2" name="isShippingRequired-'+data[i][0]+'" id="isShippingRequired-'+data[i][0]+'" placeholder="isShippingRequired"  required="required" onchange="KBazaar_OnEdit(\'isShippingRequired-'+data[i][0]+'\',\'isShippingRequired\','+data[i][0]+')">';
      selectOption = selectOption + '<option value="FALSE" selected>FALSE</option>';
      selectOption = selectOption + '<option value="TRUE" >TRUE</option>';
@@ -52,6 +52,7 @@ google.script.run.withSuccessHandler(function(e){
      htmlText = htmlText + '</div></div></div>';
      $("#accordion").append(htmlText);
      CKEDITOR.replace('Description-'+data[i][0]+''); 
+     CKEDITOR.instances['Description-'+data[i][0]+''].setData(data[i][7]);
      if(data[i][8])$("#isShippingRequired-"+data[i][0]).val("TRUE");
      if(data[i][9])$("#enabled-"+data[i][0]).val("TRUE");
      }

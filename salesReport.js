@@ -1,7 +1,7 @@
   var product_view_link = '';
       $(function(){
         google.script.run.withSuccessHandler(function(e){
-          var ef = e;
+          var ef = JSON.parse(e);
           var data = ef["data"];
           console.log(data);
           product_view_link=ef["script_link"]+"?productCatalog=1";
